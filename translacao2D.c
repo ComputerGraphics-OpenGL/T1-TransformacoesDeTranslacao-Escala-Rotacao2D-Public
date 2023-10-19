@@ -1,8 +1,8 @@
 // Código C para implementar transformações básicas no OPENGL
 #include <stdio.h>
+#include <GL/glut.h>
 #include <math.h>
 #include <time.h>
-#include <GL/glut.h>
 
 // Tamanho da janela
 #define maxLargura 640
@@ -11,14 +11,14 @@
 // Velocidade de rotação
 #define velocidadeTheta 0.005
 
-// Isso cria um atraso entre duas ações
+// Criar um atraso entre duas ações
 void atraso(unsigned int msegundos) {
     clock_t objetivo = msegundos + clock();
     while (objetivo > clock());
 }
 
-// Esta é uma inicialização básica para a janela glut
-void minhaInicializacao(void){
+// Inicialização para a janela glut
+void inicializacao(void){
     glClearColor(1.0, 1.0, 0.0, 0.0);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -27,7 +27,7 @@ void minhaInicializacao(void){
     glFlush();
 }
 
-// Esta função apenas desenha um ponto
+// Desenhar um ponto
 void desenharPonto(int x, int y) {
     glPointSize(10.0);
     glColor3f(0.0f, 0.0f, 1.0f);
@@ -49,7 +49,7 @@ void rotacionarEmTornoDoPonto(int px, int py, int cx, int cy) {
         if (theta >= (2.0 * 3.14159))
             theta = theta - (2.0 * 3.14159);
 
-        // cálculos reais..
+        // cálculos...
         xf = (cx + (int)((float)(px - cx) *
             cos(theta)) - ((float)(py - cy) *
             sin(theta)));
@@ -69,7 +69,7 @@ void rotacionarEmTornoDoPonto(int px, int py, int cx, int cy) {
     }
 }
 
-// Esta função irá transladar o ponto
+// Transladar o ponto
 void transladarPonto(int px, int py, int tx, int ty) {
     int tempx = px;
     int tempy = py;
@@ -77,7 +77,7 @@ void transladarPonto(int px, int py, int tx, int ty) {
     while (1)  {
         glClear(GL_COLOR_BUFFER_BIT);
 
-// Desenhando o ponto
+        // Desenhando o ponto
         desenharPonto(px, py);
 
         // Atualizar
@@ -97,8 +97,7 @@ void transladarPonto(int px, int py, int tx, int ty) {
         atraso(1000000);
     }
 }
-
-// Esta função desenha 
+ 
 void escalarPonto(int px, int py, int sx, int sy) {
     int fx, fy;
    
@@ -109,12 +108,12 @@ void escalarPonto(int px, int py, int sx, int sy) {
         fx = px * sx;
         fy = py * sy;
 
-        // Desenhando o ponto 
+        // Desenhar o ponto 
         desenharPonto(fx, fy);
 
         glFlush();
 
-        // Criando um atraso para que o ponto possa ser notado 
+        // Criar um atraso para que o ponto possa ser notado 
         atraso(500);
 
         glClear(GL_COLOR_BUFFER_BIT);
@@ -123,18 +122,18 @@ void escalarPonto(int px, int py, int sx, int sy) {
         fx = px;
         fy = py;
 
-        // Desenhando o ponto 
+        // Desenhar o ponto 
         desenharPonto(fx, fy);
         
 		glFlush();
 
-		// Criando um atraso para que o ponto possa ser notado 
+		// Criar um atraso para que o ponto possa ser notado 
 		atraso(500);
 	}
 }
 
-// Função de exibição real 
-void minhaExibicao(void) {
+// Exibição
+void exibicao(void) {
 	int opt;
 	printf("\nDigite\n\t<1> para translação"
 		   "\n\t<2> para rotação"
@@ -158,14 +157,13 @@ void minhaExibicao(void) {
 	}
 }
 
-// Código principal 
 void main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(maxLargura, maxAltura);
 	glutInitWindowPosition(100, 150);
 	glutCreateWindow("Transformando ponto");
-	glutDisplayFunc(minhaExibicao);
-	minhaInicializacao();
+	glutDisplayFunc(exibicao);
+	inicializacao();
 	glutMainLoop();
 }
