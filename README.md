@@ -18,11 +18,11 @@ A escala envolve redimensionar um objeto em relação a um ponto específico. A 
 
 ## Fórmulas Geométricas
 
-- **Translação**: Novo Ponto (px, py) = Ponto Original (px, py) + Deslocamento (tx, ty)
+- **Translação**: p'(px, py) = p(px, py) + d(tx, ty)
 
-- **Rotação**: Novo Ponto (xf, yf) = (cx + (px - cx) * cos(theta) - (py - cy) * sin(theta), cy + (px - cx) * sin(theta) + (py - cy) * cos(theta)
+- **Rotação**: p'(xf, yf) = (cx + (px - cx) * cos(θ) - (py - cy) * sin(θ), cy + (px - cx) * sin(θ) + (py - cy) * cos(θ)
 
-- **Escala**: Novo Ponto (fx, fy) = (px * Fator de Escala Horizontal (sx), py * Fator de Escala Vertical (sy)
+- **Escala**: p'(fx, fy) = (px * Fator de Escala Horizontal (sx), py * Fator de Escala Vertical (sy)
 
 ## Como Executar
 
