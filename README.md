@@ -1,5 +1,15 @@
 # Implementação de Transformações Básicas em OpenGL
 
+```markdown
+Universidade Federal de Goiás - Instituto de Informática
+Disciplina: Computação Gráfica
+Prof.ª: DELLER JAMES FERREIRA
+Alunos: 	Matheus Lázaro Honório da Silva
+            Gabriel Crispim de Siqueira
+            Guilherme Araújo França
+            Thais Gonçalves da Silva
+```
+
 - Este código em C demonstra a implementação de transformações básicas - translação, rotação e escala - em um ponto usando a biblioteca OpenGL. As transformações são executadas de forma interativa, permitindo ao usuário escolher o tipo de transformação a ser aplicada.
 
 ## Funções Implementadas
