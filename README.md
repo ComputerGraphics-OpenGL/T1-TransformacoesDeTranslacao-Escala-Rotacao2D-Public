@@ -1,4 +1,4 @@
-# Implementação de Transformações Básicas em OpenGL
+ Implementação de Transformações Básicas em OpenGL
 
 ```markdown
 Universidade Federal de Goiás - Instituto de Informática
@@ -12,34 +12,50 @@ Alunos: 	Matheus Lázaro Honório da Silva
 
 - Este código em C demonstra a implementação de transformações básicas - translação, rotação e escala - em um ponto usando a biblioteca OpenGL. As transformações são executadas de forma interativa, permitindo ao usuário escolher o tipo de transformação a ser aplicada.
 
-## Funções Implementadas
+## Conteúdo
+1. [Introdução](#introdução)
+2. [Compilação](#compilação)
+4. [Conceitos-chave](#conceitos-chave)
+5. [Fórmulas](#fórmulas)
 
-### Translação
+## Introdução
 
-A translação é o processo de mover um objeto de uma posição para outra em um sistema de coordenadas. A função `transladarPonto` implementa a translação de um ponto, permitindo que ele se mova horizontalmente (tx) e verticalmente (ty).
+O projeto demonstra transformações geométricas em uma figura 2D representada como um quadrado. As transformações incluem:
+- **Escalação**: Aumenta ou diminui o tamanho da figura.
+- **Rotação**: Gira a figura em torno de um ponto fixo.
+- **Translação**: Move a figura em uma direção.
 
-### Rotação
+## Compilação
 
-A rotação envolve girar um objeto em torno de um ponto específico. A função `rotacionarEmTornoDoPonto` realiza a rotação de um ponto em torno de um ponto central (cx, cy) e permite que o ponto gire de forma interativa.
+```shell
+gcc -c transformacoes2D.c -lGL -lGLU -lglut -lm
+gcc -o transformacoes2D transformacoes2D.c -lGL -lGLU -lglut -lm
+./transformacoes2D
+```
+
+## Conceitos-chave
+
+- **OpenGL**: Uma API gráfica de código aberto usada para renderizar gráficos 2D e 3D.
+- **Transformações Geométricas**: São operações que alteram a posição, escala ou orientação de objetos gráficos.
+
+## Fórmulas
 
 ### Escala
 
-A escala envolve redimensionar um objeto em relação a um ponto específico. A função `escalarPonto` implementa a escala de um ponto, permitindo que ele seja redimensionado em relação a um ponto central.
+A escala aumenta ou diminui o tamanho da figura usando a fórmula:
 
-## Fórmulas Geométricas
+novo_valor = valor_original * fator
 
-- **Translação**: p'(px, py) = p(px, py) + d(tx, ty)
 
-- **Rotação**: p'(xf, yf) = (cx + (px - cx) * cos(θ) - (py - cy) * sin(θ), cy + (px - cx) * sin(θ) + (py - cy) * cos(θ)
+### Rotação
 
-- **Escala**: p'(fx, fy) = (px * Fator de Escala Horizontal (sx), py * Fator de Escala Vertical (sy)
+A rotação gira a figura em torno de um ponto fixo usando as fórmulas:
 
-## Como Executar
+x_novo = x_centro + (x_original - x_centro) * cos(ângulo) - (y_original - y_centro) * sin(ângulo)
+y_novo = y_centro + (x_original - x_centro) * sin(ângulo) + (y_original - y_centro) * cos(ângulo)
 
-Compile o código e execute o programa para escolher entre as opções de translação, rotação ou escala.
+### Translação
 
-```bash
-$ gcc -c translacao2D.c -lGL -lGLU -lglut -lm
-$ gcc -o translacao2D translacao2D.c -lGL -lGLU -lglut -lm
-$ ./translacao2D
-```
+A translação move a figura em uma direção usando a fórmula:
+
+novo_valor = valor_original + deslocamento
