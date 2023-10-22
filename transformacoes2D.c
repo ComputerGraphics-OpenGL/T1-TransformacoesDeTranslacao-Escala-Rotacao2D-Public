@@ -8,10 +8,16 @@ int tipoTransformacao = 0; // Variável para o tipo de transformação
 double pontoFixo[2] = {0.0, 0.0}; // Ponto fixo no centro
 double vertices[4][2] = {{-1, -1}, {1, -1}, {1, 1}, {-1, 1}}; // Coordenadas dos vértices para escalação e translação
 
+// Variável para controlar se o quadrado padrão foi desenhado
+int quadradoPadraoDesenhado = 0;
+
 // Função de inicialização para configurar a janela
 void inicializacao() {
     glClearColor(1, 1, 1, 1); // Define a cor de fundo como branco
     gluOrtho2D(-5, 5, -5, 5); // Define as coordenadas da janela
+    glClear(GL_COLOR_BUFFER_BIT); // Limpa o buffer de cor com a cor de fundo
+    
+    glFlush(); // Força a renderização imediata
 }
 
 // Função para desenhar um quadrado
@@ -43,6 +49,14 @@ void desenharPontos() {
 
 // Função para aplicar escalação ao quadrado
 void aplicarEscala() {
+    if (!quadradoPadraoDesenhado) {
+        // Desenhe o quadrado padrão
+        glColor3f(1, 0, 0);
+        desenharQuadrado();
+        quadradoPadraoDesenhado = 1; // Marque o quadrado padrão como desenhado
+
+    }
+
     printf("Digite 1 para aumentar a figura em 3 vezes\nDigite 2 para aumentar a figura em um terço\nDigite 3 para alterar a direção X 4 vezes, e a direção Y inalterada.\n");
     scanf("%d%*c", &escolhaUsuario);
 
@@ -84,6 +98,13 @@ void aplicarRotacao(double* ponto, double angulo) {
 
 // Função para aplicar translação ao quadrado
 void aplicarTranslacao() {
+    if (!quadradoPadraoDesenhado) {
+        // Desenhe o quadrado padrão
+        glColor3f(1, 0, 0);
+        desenharQuadrado();
+        quadradoPadraoDesenhado = 1; // Marque o quadrado padrão como desenhado
+    }
+
     printf("Digite 1 para deslocar o objeto 3 unidades para a direita\nDigite 2 para deslocar o objeto 2 unidades para cima\nDigite 3 para mover o objeto para baixo ½ unidade e para direita uma unidade\nDigite 4 para mover o objeto para baixo 2/3 unidade e para a esquerda 4 unidades.\n");
     scanf("%d%*c", &escolhaUsuario);
 
@@ -137,6 +158,10 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutCreateWindow("Transformacoes");
     inicializacao();
+    
+    // Desenhe o quadrado padrão antes de qualquer transformação
+    desenharQuadrado();
+
     glutDisplayFunc(exibir);
 
     printf("Escolha a transformacao:\n");
@@ -154,8 +179,19 @@ int main(int argc, char **argv) {
 
         aplicarRotacao(vertices[0], angulo);
     } else if (tipoTransformacao == 1) { // Se a escolha for escala
+        
+        // Desenhe o quadrado padrão
+        glColor3f(1, 0, 0);
+        desenharQuadrado();
+        glFlush();
+
         aplicarEscala();
     } else if (tipoTransformacao == 3) { // Se a escolha for translação
+        // Desenhe o quadrado padrão
+        glColor3f(1, 0, 0);
+        desenharQuadrado();
+        glFlush();
+
         aplicarTranslacao();
     }
 
