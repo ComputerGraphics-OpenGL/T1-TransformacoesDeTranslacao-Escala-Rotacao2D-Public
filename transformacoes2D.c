@@ -64,18 +64,18 @@ void aplicarEscala() {
         case 1:  // a figura fica 3 vezes maior
             for (int i = 0; i < 4; i++) {
                 vertices[i][0] *= 3; // x (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
-                vertices[i][1] *= 3; // y
+                vertices[i][1] *= 3; // y (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
             }
             break;
         case 2:  // a figura fica um terço maior
             for (int i = 0; i < 4; i++) {
-                vertices[i][0] *= 1.0 / 3; // x
-                vertices[i][1] *= 1.0 / 3; // y
+                vertices[i][0] *= 1.0 / 3; // x (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
+                vertices[i][1] *= 1.0 / 3; // y (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
             }
             break;
         case 3:  // a direção X fica 4 vezes maior, a direção Y inalterada
             for (int i = 0; i < 4; i++) {
-                vertices[i][0] *= 4; // x
+                vertices[i][0] *= 4; // x (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
             }
             break;
         default:
@@ -111,24 +111,24 @@ void aplicarTranslacao() {
     switch (escolhaUsuario) {
         case 1:  // deslocar o objeto 3 unidades para a direita
             for (int i = 0; i < 4; i++) {
-                vertices[i][0] += 3;
+                vertices[i][0] += 3; // (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
             }
             break;
         case 2:  // deslocar o objeto 2 unidades para cima
             for (int i = 0; i < 4; i++) {
-                vertices[i][1] += 2;
+                vertices[i][1] += 2; // (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
             }
             break;
         case 3:  // mover o objeto para baixo ½ unidade e para direita uma unidade
             for (int i = 0; i < 4; i++) {
-                vertices[i][0] += 1;
-                vertices[i][1] -= 0.5;
+                vertices[i][0] += 1; // (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
+                vertices[i][1] -= 0.5; // (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
             }
             break;
         case 4:  // mover o objeto para baixo 2/3 unidade e para a esquerda 4 unidades
             for (int i = 0; i < 4; i++) {
-                vertices[i][0] -= 4;
-                vertices[i][1] -= 2.0 / 3;
+                vertices[i][0] -= 4; // (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
+                vertices[i][1] -= 2.0 / 3; // (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
             }
             break;
         default:
