@@ -14,20 +14,20 @@ int quadradoPadraoDesenhado = 0;
 // Função de inicialização para configurar a janela
 void inicializacao() {
     glClearColor(1, 1, 1, 1); // Define a cor de fundo como branco
-    gluOrtho2D(-5, 5, -5, 5); // Define as coordenadas da janela usando um sistema de coordenadas ortográficas 2D. Isso estabelece a área visível na janela.
+    gluOrtho2D(-5, 5, -5, 5); // Define as coordenadas da janela
     glClear(GL_COLOR_BUFFER_BIT); // Limpa o buffer de cor com a cor de fundo
     
-    glFlush(); // Força a renderização imediata da cena na janela, garantindo que qualquer comando de desenho pendente seja processado e exibido. // Força a renderização imediata
+    glFlush(); // Força a renderização imediata
 }
 
 // Função para desenhar um quadrado
 void desenharQuadrado() {
-    glBegin(GL_QUADS); // Inicia o desenho de um conjunto de quadriláteros. Neste caso, será usado para desenhar um quadrado.
-    glVertex2f(vertices[0][0], vertices[0][1]); // Especifica as coordenadas do primeiro vértice do quadrado.
-    glVertex2f(vertices[1][0], vertices[1][1]); // Especifica as coordenadas do segundo vértice do quadrado.
-    glVertex2f(vertices[2][0], vertices[2][1]); // Especifica as coordenadas do terceiro vértice do quadrado.
-    glVertex2f(vertices[3][0], vertices[3][1]); // Especifica as coordenadas do quarto vértice do quadrado.
-    glEnd(); // Encerra o desenho dos quadriláteros (no caso, o quadrado)
+    glBegin(GL_QUADS);
+    glVertex2f(vertices[0][0], vertices[0][1]);
+    glVertex2f(vertices[1][0], vertices[1][1]);
+    glVertex2f(vertices[2][0], vertices[2][1]);
+    glVertex2f(vertices[3][0], vertices[3][1]);
+    glEnd();
 }
 
 // Função para desenhar pontos (ponto fixo em verde e ponto rotacionado em vermelho)
@@ -63,19 +63,19 @@ void aplicarEscala() {
     switch (escolhaUsuario) {
         case 1:  // a figura fica 3 vezes maior
             for (int i = 0; i < 4; i++) {
-                vertices[i][0] *= 3; // x (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
-                vertices[i][1] *= 3; // y
+                vertices[i][0] *= 3;
+                vertices[i][1] *= 3;
             }
             break;
         case 2:  // a figura fica um terço maior
             for (int i = 0; i < 4; i++) {
-                vertices[i][0] *= 1.0 / 3; // x
-                vertices[i][1] *= 1.0 / 3; // y
+                vertices[i][0] *= 1.0 / 3;
+                vertices[i][1] *= 1.0 / 3;
             }
             break;
         case 3:  // a direção X fica 4 vezes maior, a direção Y inalterada
             for (int i = 0; i < 4; i++) {
-                vertices[i][0] *= 4; // x
+                vertices[i][0] *= 4;
             }
             break;
         default:
@@ -138,7 +138,7 @@ void aplicarTranslacao() {
 
 // Função para exibir o desenho na janela
 void exibir() {
-    glClear(GL_COLOR_BUFFER_BIT); // Limpa o buffer de cor da janela, removendo o conteúdo atual. Isso prepara a janela para o desenho de novos elementos.
+    glClear(GL_COLOR_BUFFER_BIT);
 
     if (tipoTransformacao == 2) { // Se a escolha for rotação
         desenharPontos();
@@ -148,19 +148,21 @@ void exibir() {
         desenharQuadrado();
     }
 
-    glFlush(); // Força a renderização imediata da cena na janela, garantindo que qualquer comando de desenho pendente seja processado e exibido.
+    glFlush();
 }
 
 int main(int argc, char **argv) {
-    // Inicialização do GLUT e criação da janela
-    glutInit(&argc, argv); // Inicializa o GLUT com os argumentos da linha de comando
-    glutInitWindowSize(640, 480); // Define o tamanho da janela (largura x altura)
-    glutInitWindowPosition(10, 50); // Define a posição da janela na tela (coordenada x, coordenada y)
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB); // Configura o modo de exibição da janela (usando buffers simples e cores RGB)
-    glutCreateWindow("Transformacoes"); // Cria a janela com o título "Transformacoes"
+    glutInit(&argc, argv);
+    glutInitWindowSize(640, 480);
+    glutInitWindowPosition(10, 50);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutCreateWindow("Transformacoes");
+    inicializacao();
+    
+    // Desenhe o quadrado padrão antes de qualquer transformação
+    desenharQuadrado();
 
-
-    glutDisplayFunc(exibir); // configura a função de exibição que será chamada sempre que a janela precisa ser redesenhada. É onde o conteúdo da janela é desenhado.
+    glutDisplayFunc(exibir);
 
     printf("Escolha a transformacao:\n");
     printf("1 - Escalar\n");
@@ -179,20 +181,20 @@ int main(int argc, char **argv) {
     } else if (tipoTransformacao == 1) { // Se a escolha for escala
         
         // Desenhe o quadrado padrão
-        glColor3f(1, 0, 0); // Define a cor atual para vermelho 
+        glColor3f(1, 0, 0);
         desenharQuadrado();
-        glFlush(); // Força a renderização imediata da cena na janela, garantindo que qualquer comando de desenho pendente seja processado e exibido.
+        glFlush();
 
         aplicarEscala();
     } else if (tipoTransformacao == 3) { // Se a escolha for translação
         // Desenhe o quadrado padrão
         glColor3f(1, 0, 0);
         desenharQuadrado();
-        glFlush(); // Força a renderização imediata da cena na janela, garantindo que qualquer comando de desenho pendente seja processado e exibido.
+        glFlush();
 
         aplicarTranslacao();
     }
 
-    glutMainLoop(); // Inicia o loop principal do GLUT, que é responsável por lidar com eventos e manter a janela aberta.
+    glutMainLoop();
     return 0;
 }
