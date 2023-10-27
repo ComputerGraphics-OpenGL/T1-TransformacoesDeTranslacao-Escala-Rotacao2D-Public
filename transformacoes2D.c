@@ -158,9 +158,6 @@ int main(int argc, char **argv) {
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutCreateWindow("Transformacoes");
     inicializacao();
-    
-    // Desenhe o quadrado padrão antes de qualquer transformação
-    desenharQuadrado();
 
     glutDisplayFunc(exibir);
 
