@@ -10,7 +10,7 @@ Alunos: 	Matheus Lázaro Honório da Silva
             Thais Gonçalves da Silva
 ```
 
-- Este código em C demonstra a implementação de transformações básicas - translação, rotação e escala - em um ponto usando a biblioteca OpenGL. As transformações são executadas de forma interativa, permitindo ao usuário escolher o tipo de transformação a ser aplicada.
+- Este código em C demonstra a implementação de transformações básicas - translação, rotação e escala - usando a biblioteca OpenGL. As transformações são executadas de forma interativa, permitindo ao usuário escolher o tipo de transformação a ser aplicada.
 
 ## Conteúdo
 1. [Introdução](#introdução)
