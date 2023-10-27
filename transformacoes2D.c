@@ -63,19 +63,19 @@ void aplicarEscala() {
     switch (escolhaUsuario) {
         case 1:  // a figura fica 3 vezes maior
             for (int i = 0; i < 4; i++) {
-                vertices[i][0] *= 3;
-                vertices[i][1] *= 3;
+                vertices[i][0] *= 3; // x (primeira dimensão: vertice da figura - segunda dimensão: 0=x, 1=y)
+                vertices[i][1] *= 3; // y
             }
             break;
         case 2:  // a figura fica um terço maior
             for (int i = 0; i < 4; i++) {
-                vertices[i][0] *= 1.0 / 3;
-                vertices[i][1] *= 1.0 / 3;
+                vertices[i][0] *= 1.0 / 3; // x
+                vertices[i][1] *= 1.0 / 3; // y
             }
             break;
         case 3:  // a direção X fica 4 vezes maior, a direção Y inalterada
             for (int i = 0; i < 4; i++) {
-                vertices[i][0] *= 4;
+                vertices[i][0] *= 4; // x
             }
             break;
         default:
